@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanat Portfolio</title>
+    
+    <!-- CSS Dosyası -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <button class="admin-btn" onclick="toggleAdmin()">Admin</button>
+            <h1>Sanat Portfolio</h1>
+            <p class="subtitle">Renklerin ve Hayallerin Buluştuğu Yer</p>
+        </header>
+
+        <!-- Admin Panel -->
+        <div id="adminPanel" class="admin-panel">
+            <!-- Login Form -->
+            <div id="loginForm" class="login-form">
+                <h2 style="text-align: center; margin-bottom: 30px;">Admin Girişi</h2>
+                <div class="form-group">
+                    <label for="adminPassword">Şifre:</label>
+                    <input type="password" id="adminPassword" placeholder="Admin şifresini girin">
+                </div>
+                <button class="btn" onclick="adminLogin()">Giriş Yap</button>
+            </div>
+
+            <!-- Upload Form -->
+            <div id="uploadForm" class="upload-form" style="display: none;">
+                <h2 style="text-align: center; margin-bottom: 30px;">Yeni Eser Ekle</h2>
+
+                <div class="form-group">
+                    <label>Resim Seç:</label>
+                    <div class="file-upload" onclick="document.getElementById('fileInput').click()">
+                        <input type="file" id="fileInput" accept="image/*" style="display: none;"
+                            onchange="previewImage(event)">
+                        <p>Resmi buraya sürükleyin veya tıklayarak seçin</p>
+                        <p style="font-size: 14px; color: #666; margin-top: 10px;">PNG, JPG, JPEG formatları desteklenir
+                        </p>
+                    </div>
+                    <img id="imagePreview" class="preview-img" style="display: none;">
+                </div>
+
+                <div class="form-group">
+                    <label for="artworkTitle">Eser Adı:</label>
+                    <input type="text" id="artworkTitle" placeholder="Eserin adını girin" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="artworkDescription">Açıklama:</label>
+                    <textarea id="artworkDescription" placeholder="Eser hakkında bilgi verin..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="artworkCategory">Kategori:</label>
+                    <select id="artworkCategory">
+                        <option value="Yağlı Boya">Yağlı Boya</option>
+                        <option value="Akrilik">Akrilik</option>
+                        <option value="Suluboya">Suluboya</option>
+                        <option value="Karakalem">Karakalem</option>
+                        <option value="Pastel">Pastel</option>
+                        <option value="Dijital">Dijital</option>
+                        <option value="Karışık Teknik">Karışık Teknik</option>
+                    </select>
+                </div>
+
+                <button class="btn" onclick="uploadArtwork()">Eseri Yükle</button>
+                <button class="btn btn-secondary" onclick="showArtworkList()">Eserleri Yönet</button>
+                <button class="btn btn-secondary" onclick="adminLogout()">Çıkış Yap</button>
+
+                <div id="loading" class="loading">
+                    <div class="spinner"></div>
+                    <p>Eser yükleniyor...</p>
+                </div>
+            </div>
+
+            <!-- Artwork Management -->
+            <div id="artworkList" class="upload-form" style="display: none;">
+                <h2 style="text-align: center; margin-bottom: 30px;">Eser Yönetimi</h2>
+                <div id="adminArtworks"></div>
+                <button class="btn btn-secondary" onclick="showUploadForm()">Yeni Eser Ekle</button>
+                <button class="btn btn-secondary" onclick="adminLogout()">Çıkış Yap</button>
+            </div>
+        </div>
+
+        <!-- Gallery -->
+        <div id="gallery" class="gallery">
+            <div class="empty-gallery">
+                <h3>Henüz eser eklenmemiş</h3>
+                <p>Admin panelinden eserlerinizi ekleyerek galeriyi oluşturabilirsiniz.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.2/firebase-app-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.2/firebase-firestore-compat.min.js"></script>
+    
+    <!-- Firebase Yapılandırması -->
+    <script src="config/firebase-config.js"></script>
+    
+    <!-- Ana JavaScript Dosyası -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
