@@ -52,11 +52,6 @@ CSS'de gradient renklerini değiştirin:
 background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 ```
 
-
-## 📜 Lisans
-
-Bu proje kişisel kullanım içindir. Ticari kullanım için geliştirici ile iletişime geçin.
-
 ---
 
 **Not**: Bu site mobil uyumlu olarak tasarlanmıştır ve tüm modern tarayıcılarda çalışır.
